@@ -7,6 +7,9 @@ class Piece():
         self.photo = ''
         self.location = location
 
+    def __str__(self):
+        return "Color: " + self.color + " name: " + self.name + " photo: " + self.photo + " location: " + self.location
+
     def draw(self):
             if self.name == 'pawn': 
                 self.photo = 'image/' + self.color + 'pawn.jpg'
@@ -24,13 +27,14 @@ class Piece():
                 return "Error: Could not find photo"
             print(self.photo)
     
+    
 
 
 
 class Chess():
     def __init__(self, window):
         self.window = window
-        self.checkers = []
+        self.checkers = {}
         self.white_pieces = []
         self.black_pieces = []
         
@@ -40,14 +44,12 @@ class Chess():
         height = checker_size * 8
         w = tk.Canvas(self.window, width=width, height=height)
         for i in range(0,8):
-            row = []
             for j in range(0,8):
                 if (i + j) % 2  == 0:
                     w.create_rectangle(i*checker_size, j*checker_size, (i+1)*checker_size, (j+1)*checker_size, fill="tan")
                 else:
                     w.create_rectangle(i*checker_size, j*checker_size, (i+1)*checker_size, (j+1)*checker_size, fill="black")
-                row.append(str(i+1)+chr(j+97))
-            self.checkers.append(row)
+                self.checkers[str(i+1)+chr(j+97)] = 'NONE'
         w.pack()
 
 
@@ -87,6 +89,10 @@ class Chess():
         self.black_pieces.append(Piece('b','knight', '8g'))
         self.black_pieces.append(Piece('b','king', '8e'))
         self.black_pieces.append(Piece('b','queen', '8d'))
+        for i in self.white_pieces:
+            self.checkers[i.location] = i
+        for i in self.black_pieces:
+            self.checkers[i.location] = i
 
         
 
