@@ -12,17 +12,17 @@ class Piece():
 
     def draw(self):
             if self.name == 'pawn': 
-                self.photo = 'image/' + self.color + 'pawn.jpg'
+                self.photo = 'image/' + self.color + 'pawn.png'
             elif self.name == 'knight': 
-                self.photo = 'image/' + self.color + 'knight.jpg'
+                self.photo = 'image/' + self.color + 'knight.png'
             elif self.name == 'rook': 
-                self.photo = 'image/' + self.color + 'rook.jpg'
+                self.photo = 'image/' + self.color + 'rook.png'
             elif self.name == 'bishop': 
-                self.photo = 'image/' + self.color + 'bishop.jpg'
+                self.photo = 'image/' + self.color + 'bishop.png'
             elif self.name == 'queen': 
-                self.photo = 'image/' + self.color + 'queen.jpg'
+                self.photo = 'image/' + self.color + 'queen.png'
             elif self.name == 'king': 
-                self.photo = 'image/' + self.color + 'king.jpg'
+                self.photo = 'image/' + self.color + 'king.png'
             else:
                 return "Error: Could not find photo"
             print(self.photo)
@@ -91,8 +91,10 @@ class Chess():
         self.black_pieces.append(Piece('b','queen', '8d'))
         for i in self.white_pieces:
             self.checkers[i.location] = i
+            i.draw()
         for i in self.black_pieces:
             self.checkers[i.location] = i
+            i.draw()
 
         
 
@@ -107,6 +109,8 @@ def main():
     chess = Chess(window)
     chess.createCheckerBoard()
     chess.createPieces()
+    for i in chess.checkers:
+        print(chess.checkers[i])
     window.mainloop()
 
 
