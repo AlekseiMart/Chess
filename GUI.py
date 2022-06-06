@@ -6,26 +6,43 @@ class Piece():
         self.name = name
         self.photo = ''
         self.location = location
-
+        self.possible_moves = []
     def __str__(self):
         return "Color: " + self.color + " name: " + self.name + " photo: " + self.photo + " location: " + self.location
 
     def draw(self):
-            if self.name == 'pawn': 
-                self.photo = 'image/' + self.color + 'pawn.png'
-            elif self.name == 'knight': 
-                self.photo = 'image/' + self.color + 'knight.png'
-            elif self.name == 'rook': 
-                self.photo = 'image/' + self.color + 'rook.png'
-            elif self.name == 'bishop': 
-                self.photo = 'image/' + self.color + 'bishop.png'
-            elif self.name == 'queen': 
-                self.photo = 'image/' + self.color + 'queen.png'
-            elif self.name == 'king': 
-                self.photo = 'image/' + self.color + 'king.png'
-            else:
-                return "Error: Could not find photo"
-            print(self.photo)
+        if self.name == 'pawn': 
+            self.photo = 'image/' + self.color + 'pawn.png'
+        elif self.name == 'knight': 
+            self.photo = 'image/' + self.color + 'knight.png'
+        elif self.name == 'rook': 
+            self.photo = 'image/' + self.color + 'rook.png'
+        elif self.name == 'bishop': 
+            self.photo = 'image/' + self.color + 'bishop.png'
+        elif self.name == 'queen': 
+            self.photo = 'image/' + self.color + 'queen.png'
+        elif self.name == 'king': 
+            self.photo = 'image/' + self.color + 'king.png'
+        else:
+            return "Error: Could not find photo"
+        print(self.photo)
+    
+    def possibleMoves(self):
+        v = -1
+        if(self.color == 'w'):
+            v = 1
+        if self.name == 'pawn': 
+            self.possible_moves = []
+        elif self.name == 'knight': 
+            self.photo = 'image/' + self.color + 'knight.png'
+        elif self.name == 'rook': 
+            self.photo = 'image/' + self.color + 'rook.png'
+        elif self.name == 'bishop': 
+            self.photo = 'image/' + self.color + 'bishop.png'
+        elif self.name == 'queen': 
+            self.photo = 'image/' + self.color + 'queen.png'
+        elif self.name == 'king': 
+            self.photo = 'image/' + self.color + 'king.png'
     
     
 
@@ -95,6 +112,10 @@ class Chess():
         for i in self.black_pieces:
             self.checkers[i.location] = i
             i.draw()
+    
+    def calcMoves(self):
+        move_list = []
+
 
         
 
