@@ -32,9 +32,24 @@ class Piece():
         if(self.color == 'w'):
             v = 1
         if self.name == 'pawn': 
-            self.possible_moves = []
+            print(a)
         elif self.name == 'knight': 
-            self.photo = 'image/' + self.color + 'knight.png'
+            # two forward one left
+            self.possible_moves.append(str(int(self.location[0])+2) + chr(ord(self.location[1])-1))
+            # two forward one right
+            self.possible_moves.append(str(int(self.location[0])+2) + chr(ord(self.location[1])+1))
+            # two backward one left
+            self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])-1))
+            # two backward one right
+            self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])+1))
+            # two left one forward
+            self.possible_moves.append(str(int(self.location[0])+1) + chr(ord(self.location[1])-2))
+            # two left one backward
+            self.possible_moves.append(str(int(self.location[0])-1) + chr(ord(self.location[1])-2))
+            # two right one forward
+            self.possible_moves.append(str(int(self.location[0])+1) + chr(ord(self.location[1])+2))
+            # two right one backward
+            self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])+2))
         elif self.name == 'rook': 
             self.photo = 'image/' + self.color + 'rook.png'
         elif self.name == 'bishop': 
@@ -114,7 +129,10 @@ class Chess():
             i.draw()
     
     def calcMoves(self):
-        move_list = []
+        self.black_pieces[12].possibleMoves()
+        move_list = self.black_pieces[12].possible_moves
+        #removes all possible moves outside the boundary
+        move_list = [x for x in move_list if int(x[:-1]) < 9 and int(x[:-1]) > 0 and ord(x[-1]) > 96 and ord(x[-1]) < 105]
 
 
         
@@ -130,8 +148,7 @@ def main():
     chess = Chess(window)
     chess.createCheckerBoard()
     chess.createPieces()
-    for i in chess.checkers:
-        print(chess.checkers[i])
+    chess.calcMoves()
     window.mainloop()
 
 
