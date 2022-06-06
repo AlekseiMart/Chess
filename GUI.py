@@ -27,7 +27,7 @@ class Piece():
             return "Error: Could not find photo"
         print(self.photo)
     
-    def possibleMoves(self):
+    def possibleMoves(self, checker_board):
         v = -1
         if(self.color == 'w'):
             v = 1
@@ -51,7 +51,51 @@ class Piece():
             # two right one backward
             self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])+2))
         elif self.name == 'rook': 
-            self.photo = 'image/' + self.color + 'rook.png'
+            #forward moves
+            for i in range(1,7):
+                loc = self.location[0] + chr(ord(self.location[1])+i)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #backward moves
+            for i in range(1,7):
+                loc = self.location[0] + chr(ord(self.location[1])-i)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #left moves
+            for i in range(1,7):
+                loc = str(int(self.location[0])-i) + self.location[1]
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #right moves
+            for i in range(1,7):
+                loc = str(int(self.location[0])+i) + self.location[1]
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            
         elif self.name == 'bishop': 
             self.photo = 'image/' + self.color + 'bishop.png'
         elif self.name == 'queen': 
@@ -102,7 +146,7 @@ class Chess():
         self.black_pieces.append(Piece('b','pawn', '7e'))
         self.black_pieces.append(Piece('b','pawn', '7f'))
         self.black_pieces.append(Piece('b','pawn', '7g'))
-        self.black_pieces.append(Piece('b','pawn', '7h'))
+        #self.black_pieces.append(Piece('b','pawn', '7h'))
 
         self.white_pieces.append(Piece('w','rook', '1a'))
         self.white_pieces.append(Piece('w','rook', '1h'))
@@ -129,10 +173,12 @@ class Chess():
             i.draw()
     
     def calcMoves(self):
-        self.black_pieces[12].possibleMoves()
-        move_list = self.black_pieces[12].possible_moves
+        self.black_pieces[8].possibleMoves(self.checkers)
+        print(self.black_pieces[8])
+        move_list = self.black_pieces[8].possible_moves
         #removes all possible moves outside the boundary
         move_list = [x for x in move_list if int(x[:-1]) < 9 and int(x[:-1]) > 0 and ord(x[-1]) > 96 and ord(x[-1]) < 105]
+        print(move_list)
 
 
         
