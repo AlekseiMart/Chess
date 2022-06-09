@@ -130,6 +130,7 @@ class Chess():
         w.pack()
        
         w.create_image(50,10, image = ImageTk.PhotoImage(Image.open("wknight.png")), anchor = tk.NW)
+        w.pack()
         w.mainloop()
 
     def createPieces(self):
