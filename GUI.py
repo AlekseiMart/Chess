@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import Image, ImageTk
 
 class Piece():
     def __init__(self,color,name,location):
@@ -127,7 +128,9 @@ class Chess():
                     w.create_rectangle(i*checker_size, j*checker_size, (i+1)*checker_size, (j+1)*checker_size, fill="black")
                 self.checkers[str(i+1)+chr(j+97)] = 'NONE'
         w.pack()
-
+       
+        w.create_image(50,10, image = ImageTk.PhotoImage(Image.open("wknight.png")), anchor = tk.NW)
+        w.mainloop()
 
     def createPieces(self):
         self.white_pieces.append(Piece('w','pawn', '2a'))
@@ -192,8 +195,8 @@ def main():
     window.title("Chess")
     window.resizable(width=False, height=False)
     chess = Chess(window)
-    chess.createCheckerBoard()
     chess.createPieces()
+    chess.createCheckerBoard()
     chess.calcMoves()
     window.mainloop()
 
