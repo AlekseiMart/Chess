@@ -165,7 +165,7 @@ class Piece():
         elif self.name == 'bishop': 
             #upright moves
             for i in range(1, 7):
-                loc = str(int(self.location[0])+1) + chr(ord(self.location[1])+1)
+                loc = str(int(self.location[0])+i) + chr(ord(self.location[1])+i)
                 if loc in checker_board:
                     if(checker_board[loc] == "NONE"):
                         self.possible_moves.append(loc)
@@ -176,7 +176,7 @@ class Piece():
                         break
             #upleft moves
             for i in range(1, 7):
-                loc = str(int(self.location[0])+1) + chr(ord(self.location[1])-1)
+                loc = str(int(self.location[0])+i) + chr(ord(self.location[1])-i)
                 if loc in checker_board:
                     if(checker_board[loc] == "NONE"):
                         self.possible_moves.append(loc)
@@ -187,7 +187,7 @@ class Piece():
                         break
             #downright moves
             for i in range(1, 7):
-                loc = str(int(self.location[0])-1) + chr(ord(self.location[1])+1)
+                loc = str(int(self.location[0])-i) + chr(ord(self.location[1])+i)
                 if loc in checker_board:
                     if(checker_board[loc] == "NONE"):
                         self.possible_moves.append(loc)
@@ -198,7 +198,7 @@ class Piece():
                         break
             #downleft moves
             for i in range(1, 7):
-                loc = str(int(self.location[0])-1) + chr(ord(self.location[1])-1)
+                loc = str(int(self.location[0])-i) + chr(ord(self.location[1])-i)
                 if loc in checker_board:
                     if(checker_board[loc] == "NONE"):
                         self.possible_moves.append(loc)
@@ -211,7 +211,7 @@ class Piece():
         elif self.name == 'queen': 
             #upright moves
             for i in range(1, 7):
-                loc = str(int(self.location[0])+1) + chr(ord(self.location[1])+1)
+                loc = str(int(self.location[0])+i) + chr(ord(self.location[1])+i)
                 if loc in checker_board:
                     if(checker_board[loc] == "NONE"):
                         self.possible_moves.append(loc)
@@ -222,7 +222,7 @@ class Piece():
                         break
             #upleft moves
             for i in range(1, 7):
-                loc = str(int(self.location[0])+1) + chr(ord(self.location[1])-1)
+                loc = str(int(self.location[0])+i) + chr(ord(self.location[1])-i)
                 if loc in checker_board:
                     if(checker_board[loc] == "NONE"):
                         self.possible_moves.append(loc)
@@ -233,7 +233,7 @@ class Piece():
                         break
             #downright moves
             for i in range(1, 7):
-                loc = str(int(self.location[0])-1) + chr(ord(self.location[1])+1)
+                loc = str(int(self.location[0])-i) + chr(ord(self.location[1])+i)
                 if loc in checker_board:
                     if(checker_board[loc] == "NONE"):
                         self.possible_moves.append(loc)
@@ -244,7 +244,7 @@ class Piece():
                         break
             #downleft moves
             for i in range(1, 7):
-                loc = str(int(self.location[0])-1) + chr(ord(self.location[1])-1)
+                loc = str(int(self.location[0])-i) + chr(ord(self.location[1])-i)
                 if loc in checker_board:
                     if(checker_board[loc] == "NONE"):
                         self.possible_moves.append(loc)
@@ -347,7 +347,7 @@ class Chess():
         self.white_pieces.append(Piece('b','pawn', '2f'))
         self.white_pieces.append(Piece('b','pawn', '2g'))
         self.white_pieces.append(Piece('b','pawn', '2h'))
-
+        '''
         self.black_pieces.append(Piece('w','pawn', '7a'))
         self.black_pieces.append(Piece('w','pawn', '7b'))
         self.black_pieces.append(Piece('w','pawn', '7c'))
@@ -356,7 +356,7 @@ class Chess():
         self.black_pieces.append(Piece('w','pawn', '7f'))
         self.black_pieces.append(Piece('w','pawn', '7g'))
         self.black_pieces.append(Piece('w','pawn', '7h'))
-
+        '''
         self.white_pieces.append(Piece('b','rook', '1a'))
         self.white_pieces.append(Piece('b','rook', '1h'))
         self.white_pieces.append(Piece('b','bishop', '1c'))
@@ -382,12 +382,13 @@ class Chess():
             i.draw()
     
     def calcMoves(self):
-        self.black_pieces[8].possibleMoves(self.checkers)
-        print(self.black_pieces[8])
-        move_list = self.black_pieces[8].possible_moves
+        self.black_pieces[7].possibleMoves(self.checkers)
+        print(self.black_pieces[7])
+        move_list = self.black_pieces[7].possible_moves
         #removes all possible moves outside the boundary
         move_list = [x for x in move_list if int(x[:-1]) < 9 and int(x[:-1]) > 0 and ord(x[-1]) > 96 and ord(x[-1]) < 105]
         print(move_list)
+
 
 
         
