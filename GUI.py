@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image,ImageTk
+
 class Piece():
     def __init__(self,color,name,location):
         self.color = color
@@ -97,7 +98,51 @@ class Piece():
                         break
             
         elif self.name == 'bishop': 
-            self.photo = 'image/' + self.color + 'bishop.png'
+            #upright moves
+            for i in range(1, 7):
+                loc = str(int(self.location[0])+1) + chr(ord(self.location[1])+1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #upleft moves
+            for i in range(1, 7):
+                loc = str(int(self.location[0])+1) + chr(ord(self.location[1])-1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #downright moves
+            for i in range(1, 7):
+                loc = str(int(self.location[0])-1) + chr(ord(self.location[1])+1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #downleft moves
+            for i in range(1, 7):
+                loc = str(int(self.location[0])-1) + chr(ord(self.location[1])-1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            
         elif self.name == 'queen': 
             self.photo = 'image/' + self.color + 'queen.png'
         elif self.name == 'king': 
