@@ -36,21 +36,86 @@ class Piece():
             print(a)
         elif self.name == 'knight': 
             # two forward one left
-            self.possible_moves.append(str(int(self.location[0])+2) + chr(ord(self.location[1])-1))
+            loc = str(int(self.location[0])+2) + chr(ord(self.location[1])-1)
+            if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        return
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+            #self.possible_moves.append(str(int(self.location[0])+2) + chr(ord(self.location[1])-1))
             # two forward one right
-            self.possible_moves.append(str(int(self.location[0])+2) + chr(ord(self.location[1])+1))
+            loc = str(int(self.location[0])+2) + chr(ord(self.location[1])+1)
+            if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        return
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+            #self.possible_moves.append(str(int(self.location[0])+2) + chr(ord(self.location[1])+1))
             # two backward one left
-            self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])-1))
+            loc = str(int(self.location[0])-2) + chr(ord(self.location[1])-1)
+            if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        return
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+            #self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])-1))
             # two backward one right
-            self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])+1))
+            loc = str(int(self.location[0])-2) + chr(ord(self.location[1])+1)
+            if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        return
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+            #self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])+1))
             # two left one forward
-            self.possible_moves.append(str(int(self.location[0])+1) + chr(ord(self.location[1])-2))
+            loc = str(int(self.location[0])+1) + chr(ord(self.location[1])-2)
+            if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        return
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+            #self.possible_moves.append(str(int(self.location[0])+1) + chr(ord(self.location[1])-2))
             # two left one backward
-            self.possible_moves.append(str(int(self.location[0])-1) + chr(ord(self.location[1])-2))
+            loc = str(int(self.location[0])-1) + chr(ord(self.location[1])-2)
+            if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        return
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+            #self.possible_moves.append(str(int(self.location[0])-1) + chr(ord(self.location[1])-2))
             # two right one forward
-            self.possible_moves.append(str(int(self.location[0])+1) + chr(ord(self.location[1])+2))
+            loc = str(int(self.location[0])+1) + chr(ord(self.location[1])+2)
+            if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        return
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+            #self.possible_moves.append(str(int(self.location[0])+1) + chr(ord(self.location[1])+2))
             # two right one backward
-            self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])+2))
+            loc = str(int(self.location[0])-2) + chr(ord(self.location[1])+2)
+            if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        return
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+            #self.possible_moves.append(str(int(self.location[0])-2) + chr(ord(self.location[1])+2))
+            
         elif self.name == 'rook': 
             #forward moves
             for i in range(1,7):
