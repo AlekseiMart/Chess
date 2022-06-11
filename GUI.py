@@ -209,7 +209,94 @@ class Piece():
                         break
             
         elif self.name == 'queen': 
-            self.photo = 'image/' + self.color + 'queen.png'
+            #upright moves
+            for i in range(1, 7):
+                loc = str(int(self.location[0])+1) + chr(ord(self.location[1])+1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #upleft moves
+            for i in range(1, 7):
+                loc = str(int(self.location[0])+1) + chr(ord(self.location[1])-1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #downright moves
+            for i in range(1, 7):
+                loc = str(int(self.location[0])-1) + chr(ord(self.location[1])+1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #downleft moves
+            for i in range(1, 7):
+                loc = str(int(self.location[0])-1) + chr(ord(self.location[1])-1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #forward moves
+            for i in range(1,7):
+                loc = self.location[0] + chr(ord(self.location[1])+i)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #backward moves
+            for i in range(1,7):
+                loc = self.location[0] + chr(ord(self.location[1])-i)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #left moves
+            for i in range(1,7):
+                loc = str(int(self.location[0])-i) + self.location[1]
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
+            #right moves
+            for i in range(1,7):
+                loc = str(int(self.location[0])+i) + self.location[1]
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                    elif(checker_board[loc].color == self.color):
+                        break
+                    elif(checker_board[loc].color != self.color):
+                        self.possible_moves.append(loc)
+                        break
         elif self.name == 'king': 
             self.photo = 'image/' + self.color + 'king.png'
     
