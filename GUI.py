@@ -3,6 +3,7 @@ from PIL import Image,ImageTk
 
 class Piece():
     def __init__(self,color,name,location):
+        self.firstMove = True
         self.color = color
         self.name = name
         self.photo = ''
@@ -26,14 +27,35 @@ class Piece():
             self.photo = 'images/' + self.color + 'king.png'
         else:
             return "Error: Could not find photo"
-        print(self.photo)
     
     def possibleMoves(self, checker_board):
         v = -1
         if(self.color == 'w'):
             v = 1
-        if self.name == 'pawn': 
-            print(a)
+        if self.name == 'pawn':
+            if self.firstMove:
+                loc = str(int(self.location[0])+v) + chr(ord(self.location[1]))
+                loc2 = str(int(self.location[0])+(2*v)) + chr(ord(self.location[1]))
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                if loc2 in checker_board:
+                    if(checker_board[loc2] == "NONE"):
+                        self.possible_moves.append(loc2)
+                self.firstMove = False
+            else:
+                loc = str(int(self.location[0])+v) + chr(ord(self.location[1]))
+                loc2 = str(int(self.location[0])+v) + chr(ord(self.location[1])+1)
+                loc3 = str(int(self.location[0])+v) + chr(ord(self.location[1])-1)
+                if loc in checker_board:
+                    if(checker_board[loc] == "NONE"):
+                        self.possible_moves.append(loc)
+                if loc2 in checker_board:
+                    if(checker_board[loc2].color != self.color):
+                        self.possible_moves.append(loc2)
+                if loc3 in checker_board:
+                    if(checker_board[loc3].color != self.color):
+                        self.possible_moves.append(loc3)
         elif self.name == 'knight': 
             # two forward one left
             loc = str(int(self.location[0])+2) + chr(ord(self.location[1])-1)
@@ -333,47 +355,47 @@ class Chess():
                 imgs.append(ImageTk.PhotoImage(Image.open(self.checkers[i].photo).resize((80,80))))
                 x = (ord(self.checkers[i].location[1])-97)
                 y = int(self.checkers[i].location[0])-1
-                w.create_image(x*90+5,y*90+5,anchor=NW,image=imgs[j])
+                w.create_image(x*90+5,abs(635-(y*90)),anchor=NW,image=imgs[j])
                 j +=1
         w.pack()       
         w.mainloop()
 
     def createPieces(self):
-        self.white_pieces.append(Piece('b','pawn', '2a'))
-        self.white_pieces.append(Piece('b','pawn', '2b'))
-        self.white_pieces.append(Piece('b','pawn', '2c'))
-        self.white_pieces.append(Piece('b','pawn', '2d'))
-        self.white_pieces.append(Piece('b','pawn', '2e'))
-        self.white_pieces.append(Piece('b','pawn', '2f'))
-        self.white_pieces.append(Piece('b','pawn', '2g'))
-        self.white_pieces.append(Piece('b','pawn', '2h'))
-        '''
-        self.black_pieces.append(Piece('w','pawn', '7a'))
-        self.black_pieces.append(Piece('w','pawn', '7b'))
-        self.black_pieces.append(Piece('w','pawn', '7c'))
-        self.black_pieces.append(Piece('w','pawn', '7d'))
-        self.black_pieces.append(Piece('w','pawn', '7e'))
-        self.black_pieces.append(Piece('w','pawn', '7f'))
-        self.black_pieces.append(Piece('w','pawn', '7g'))
-        self.black_pieces.append(Piece('w','pawn', '7h'))
-        '''
-        self.white_pieces.append(Piece('b','rook', '1a'))
-        self.white_pieces.append(Piece('b','rook', '1h'))
-        self.white_pieces.append(Piece('b','bishop', '1c'))
-        self.white_pieces.append(Piece('b','bishop', '1f'))
-        self.white_pieces.append(Piece('b','knight', '1b'))
-        self.white_pieces.append(Piece('b','knight', '1g'))
-        self.white_pieces.append(Piece('b','king', '1e'))
-        self.white_pieces.append(Piece('b','queen', '1d'))
+        self.white_pieces.append(Piece('w','pawn', '2a'))
+        self.white_pieces.append(Piece('w','pawn', '2b'))
+        self.white_pieces.append(Piece('w','pawn', '2c'))
+        self.white_pieces.append(Piece('w','pawn', '2d'))
+        self.white_pieces.append(Piece('w','pawn', '2e'))
+        self.white_pieces.append(Piece('w','pawn', '2f'))
+        self.white_pieces.append(Piece('w','pawn', '2g'))
+        self.white_pieces.append(Piece('w','pawn', '2h'))
+        
+        self.black_pieces.append(Piece('b','pawn', '7a'))
+        self.black_pieces.append(Piece('b','pawn', '7b'))
+        self.black_pieces.append(Piece('b','pawn', '7c'))
+        self.black_pieces.append(Piece('b','pawn', '7d'))
+        self.black_pieces.append(Piece('b','pawn', '7e'))
+        self.black_pieces.append(Piece('b','pawn', '7f'))
+        self.black_pieces.append(Piece('b','pawn', '7g'))
+        self.black_pieces.append(Piece('b','pawn', '7h'))
+        
+        self.white_pieces.append(Piece('w','rook', '1a'))
+        self.white_pieces.append(Piece('w','rook', '1h'))
+        self.white_pieces.append(Piece('w','bishop', '1c'))
+        self.white_pieces.append(Piece('w','bishop', '1f'))
+        self.white_pieces.append(Piece('w','knight', '1b'))
+        self.white_pieces.append(Piece('w','knight', '1g'))
+        self.white_pieces.append(Piece('w','king', '1e'))
+        self.white_pieces.append(Piece('w','queen', '1d'))
 
-        self.black_pieces.append(Piece('w','rook', '8a'))
-        self.black_pieces.append(Piece('w','rook', '8h'))
-        self.black_pieces.append(Piece('w','bishop', '8c'))
-        self.black_pieces.append(Piece('w','bishop', '8f'))
-        self.black_pieces.append(Piece('w','knight', '8b'))
-        self.black_pieces.append(Piece('w','knight', '8g'))
-        self.black_pieces.append(Piece('w','king', '8e'))
-        self.black_pieces.append(Piece('w','queen', '8d'))
+        self.black_pieces.append(Piece('b','rook', '8a'))
+        self.black_pieces.append(Piece('b','rook', '8h'))
+        self.black_pieces.append(Piece('b','bishop', '8c'))
+        self.black_pieces.append(Piece('b','bishop', '8f'))
+        self.black_pieces.append(Piece('b','knight', '8b'))
+        self.black_pieces.append(Piece('b','knight', '8g'))
+        self.black_pieces.append(Piece('b','king', '8e'))
+        self.black_pieces.append(Piece('b','queen', '8d'))
         for i in self.white_pieces:
             self.checkers[i.location] = i
             i.draw()
